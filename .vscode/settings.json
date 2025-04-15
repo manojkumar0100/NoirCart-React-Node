@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/d22c78d0-200b-4290-bb1e-8b9648c35230/resourceGroups/Azure_Practices/providers/Microsoft.Web/sites/ApniDukan1",
+    "appService.deploySubpath": "Client\\apnidukan\\build"
+}

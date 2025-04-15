@@ -75,7 +75,7 @@ app.use("/products", sportRouter);
 
 app.use("/cart", authenticate, cartRouter);
 
-app.listen(process.env.port, async () => {
+app.listen(8080, async () => {
   try {
     await connect;
     console.log("connected to db");
