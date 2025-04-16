@@ -61,7 +61,7 @@ export const SingleProComp = () => {
   const ChangeActiveArticle = (code) => {
     navigate(`/singleproduct/${code}/${category}`);
   };
-console.log(products)
+console.log(products[0]);
   const handleAddToCart = () => {
     if (!isAuth) {
       toast({
@@ -153,21 +153,14 @@ console.log(products)
     setLoading(true);
     dispatch(getDataByIdApi(articleCode))
       .then((re) => {
-        dispatch(getDataSuccessById(re?.data?.product));
+        setArticle(re.data); // Set the article state with the fetched data
+        setLoading(false);
       })
-      .catch((err) => dispatch(getDataErrorById()));
-
-    getData(category).then((re) => {
-      setScrollData(re.data);
-    });
-    setArticle(
-      products?.articlesList?.filter((el) => el?.code == articleCode)[0]
-    );
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-    console.log(products);
-  }, [articleCode, isAuth]);
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, [articleCode, dispatch]);
 
   if (isError) {
     return (
@@ -182,6 +175,7 @@ console.log(products)
       </Box>
     );
   }
+  console.log(products[0]?.image[0])
 
   return (
     <div className={styles.single_page_box}>
@@ -203,18 +197,22 @@ console.log(products)
             <div className={styles.img_box}>
               <Image
                 src={
-                  products?.articlesList?.filter(
-                    (el) => el?.code == articleCode
-                  )[0]?.galleryDetails[0]?.baseUrl
+                  products[0]?.image[0]
                 }
+                
               />
-              <Image
+              {/* <Image
+                src={
+                  products[0]?.image[0]
+                }
+              /> */}
+              {/* <Image
                 src={
                   products?.articlesList?.filter(
                     (el) => el?.code == articleCode
                   )[0]?.galleryDetails[1]?.baseUrl
                 }
-              />
+              /> */}
             </div>
           )}
 
@@ -258,28 +256,28 @@ console.log(products)
           </div>
 
           <div className={styles.composition_box}>
-            <Text>{products?.description}</Text>
+            <Text>{products[0]?.title}</Text>
             <Text
               fontWeight={"500"}
               textDecoration="underline"
             >{`Composition`}</Text>
             <div>
-              {products?.materialDetails?.map((el, i) => {
-                return (
+              
+                
                   <Text>
                     <Text as={"span"} fontWeight="500">
-                      {el?.name}
+                    {products[0]?.title}
                     </Text>{" "}
-                    - {el?.description}
+                    - This men’s t-shirt blends comfort and style effortlessly, making it a versatile addition to any wardrobe. Crafted from premium breathable cotton, it offers a soft touch on the skin while ensuring long-lasting wear.
                   </Text>
-                );
-              })}
+                
+              
             </div>
             <Text>
               <Text as={"span"} fontWeight="500">
                 Art. No. ―
               </Text>{" "}
-              {products?.code}
+              {products[0]?.articleCode}
             </Text>
           </div>
 
@@ -348,8 +346,8 @@ console.log(products)
           </Box>
         ) : (
           <div className={styles.single_page_details}>
-            <Text>{products?.name}</Text>
-            <Text>{`Rs. ${products?.whitePrice?.price}.00`}</Text>
+            <Text>{products[0]?.title}</Text>
+            <Text>{`Rs. ${products[0]?.price}.00`}</Text>
             <Text>{products?.color?.text}</Text>
             <div className={styles.color_article}>
               {products?.articlesList?.splice(0, 4).map((el, i) => {

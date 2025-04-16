@@ -347,9 +347,13 @@ menRouter.get("/mens", async (req, res) => {
  */
 
 menRouter.get("/mens/:id", async (req, res) => {
+
   const { id } = req.params;
+  console.log(id)
   try {
-    const product = await MenModel.find({ _id: id });
+    
+    const product = await MenModel.find({ articleCode: id });
+    console.log(product)
     res.status(201).json({ data: product, status: "success" });
   } catch (error) {
     console.log(error);

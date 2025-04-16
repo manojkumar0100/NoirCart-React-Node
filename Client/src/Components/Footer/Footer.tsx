@@ -23,7 +23,7 @@ export const FooterC = () => {
   return (
     <Box bg={"#E4E4E4"} color={useColorModeValue("gray.700", "gray.200")}>
       <Image
-        src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=14&duration=4000&pause=1000&color=444444&background=FFFFFF00&width=220&height=31&lines=Made+with+🧡+by+Piryanshu"
+        src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=14&duration=4000&pause=1000&color=444444&background=FFFFFF00&width=220&height=31&lines=Made+with+🧡+by+Manoj"
         alt="Typing SVG"
         // style={{ margin: "auto" }}
         margin={"auto"}
