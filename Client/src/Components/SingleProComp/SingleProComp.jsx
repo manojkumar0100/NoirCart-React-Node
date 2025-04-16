@@ -61,7 +61,7 @@ export const SingleProComp = () => {
   const ChangeActiveArticle = (code) => {
     navigate(`/singleproduct/${code}/${category}`);
   };
-
+console.log(products)
   const handleAddToCart = () => {
     if (!isAuth) {
       toast({

@@ -10,11 +10,14 @@ export const ProductCard = ({
   sellingAttribute,
   price,
 }) => {
+  console.log(title, swatches, brandName, sellingAttribute, price);
+  console.log(image);
+  console.log(image[0].src, image[0].alt, image[0].dataAltImage, image[0].dataAltText);
   return (
     <div className={styles.single_card}>
       <div className={styles.single_card_img}>
-        <Image src={image[0].src} alt={image[0].alt} />
-        <Image src={image[0].dataAltImage} alt={image[0].dataAltText} />
+        <Image src={image[0]} alt={image[0].alt} />
+        <Image src={image[0]} alt={image[0].dataAltText} />
       </div>
       <Text fontSize={"xs"} color="gray.700">
         {" "}
